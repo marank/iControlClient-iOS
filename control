@@ -1,0 +1,10 @@
+Package: de.marank.icontrolclient
+Name: iControl Client
+Depends: 
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Client tool for iControl
+Maintainer: Matthias Rank <mail@m-rank.de>
+Author: Matthias Rank <mail@m-rank.de>
+Section: System
+Tag: role::hacker
