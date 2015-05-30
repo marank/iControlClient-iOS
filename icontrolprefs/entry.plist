@@ -1,0 +1,10 @@
+{
+    entry = {
+	bundle = iControlPrefs;
+	cell = PSLinkCell;
+	detail = iControlPrefsListController;
+	icon = iControlPrefs.png;
+	isController = 1;
+	label = iControlPrefs;
+    };
+}
