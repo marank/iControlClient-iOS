@@ -1,7 +1,7 @@
+export SDKVERSION=8.3
 THEOS_PACKAGE_DIR_NAME = debs
 ARCHS = armv7 armv7s arm64
 THEOS_DEVICE_IP=192.168.1.202
-SDKVERSION = 8.3
 
 include theos/makefiles/common.mk
 

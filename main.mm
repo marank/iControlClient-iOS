@@ -12,32 +12,52 @@
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
 
-		if (argc < 3) {
-			printf("Usage: %s [Server IP] <Command>\n", argv[0]);
-			printf("       [Server IP]: optional if you have specified an IP in iControl's preferences.\n");
+		BOOL fixedHost;
+		NSString *host;
+		NSString *port = @"31313";
+		int requiredArguments;
+
+		// First of all, check preferences
+		NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:@"/Library/Preferences/de.marank.icontrolclientprefs.plist"]];
+		fixedHost = [[prefs objectForKey:@"fixedhost"] boolValue];
+		if (fixedHost) {
+			host = [prefs objectForKey:@"hostaddress"];
+			requiredArguments = 2;
+		} else {
+			requiredArguments = 3;
+		}
+
+		// Check argument count
+		if (argc < requiredArguments) {
+			if (fixedHost) {
+				printf("Usage: %s [Command]\n", argv[0]);
+			} else {
+				printf("Usage: %s [Server IP] [Commands]\n", argv[0]);
+			}
 			exit(1);
 		}
 
-		// Standard port for iControl
-		NSString *port = @"31313";
-
-		// Compute commands: if argc > 3, assume that every following argument is part of the command
+		// Compute commands: if argc > requiredArguments, assume that every following argument is part of the command
 		NSString *message;
-		if (argc > 3) {
-			NSMutableArray * array = [[NSMutableArray alloc] initWithCapacity:argc - 2];
+		if (argc > requiredArguments) {
+			NSMutableArray * array = [[NSMutableArray alloc] init];
 
-			int count = 2;
+			int count = requiredArguments-1;
 			while(count < argc) {
 				[array addObject: [NSString stringWithCString:argv[count] encoding:NSASCIIStringEncoding]];
-				 count++;
+				count++;
 			}
 			message = [array componentsJoinedByString:@" "];
 		} else {
-			message = [NSString stringWithCString:argv[2] encoding:NSASCIIStringEncoding];
+			message = [NSString stringWithCString:argv[requiredArguments-1] encoding:NSASCIIStringEncoding];
 		}
 
-		FastSocket *socket = [[FastSocket alloc] initWithHost:[NSString stringWithCString:argv[1] encoding:NSASCIIStringEncoding]
-													  andPort:port];
+		// Host = first argument if no fixed host is used
+		if (!fixedHost) {
+			host = [NSString stringWithCString:argv[1] encoding:NSASCIIStringEncoding];
+		}
+
+		FastSocket *socket = [[FastSocket alloc] initWithHost:host andPort:port];
 
 		[socket setTimeout:5];
 

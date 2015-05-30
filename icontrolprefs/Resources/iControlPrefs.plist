@@ -8,7 +8,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>iControlPrefs First Page</string>
+			<string>iControl Preferences</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -18,12 +18,24 @@
 			<key>defaults</key>
 			<string>de.marank.icontrolclientprefs</string>
 			<key>key</key>
-			<string>AwesomeSwitch1</string>
+			<string>fixedhost</string>
 			<key>label</key>
-			<string>Awesome Switch 1</string>
+			<string>Fixed Host</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>defaults</key>
+			<string>de.marank.icontrolclientprefs</string>
+			<key>key</key>
+			<string>hostaddress</string>
+			<key>placeholder</key>
+			<string>IP address</string>
+            <key>isIP</key>
+            <true/>
 		</dict>
 	</array>
 	<key>title</key>
-	<string>iControlPrefs</string>
+	<string>iControl</string>
 </dict>
 </plist>
