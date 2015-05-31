@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FastSocket.h"
+static NSString * const PREF_PATH = @"/var/mobile/Library/Preferences/de.marank.icontrolclientprefs.plist";
 
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
@@ -18,10 +19,10 @@ int main(int argc, const char * argv[]) {
 		int requiredArguments;
 
 		// First of all, check preferences
-		NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:@"/Library/Preferences/de.marank.icontrolclientprefs.plist"]];
-		fixedHost = [[prefs objectForKey:@"fixedhost"] boolValue];
+		NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:PREF_PATH];
+		fixedHost = [[prefs objectForKey:@"UseFixedHost"] boolValue];
 		if (fixedHost) {
-			host = [prefs objectForKey:@"hostaddress"];
+			host = [prefs objectForKey:@"HostAddress"];
 			requiredArguments = 2;
 		} else {
 			requiredArguments = 3;

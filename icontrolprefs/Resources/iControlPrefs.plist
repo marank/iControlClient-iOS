@@ -18,7 +18,7 @@
 			<key>defaults</key>
 			<string>de.marank.icontrolclientprefs</string>
 			<key>key</key>
-			<string>fixedhost</string>
+			<string>UseFixedHost</string>
 			<key>label</key>
 			<string>Fixed Host</string>
 		</dict>
@@ -28,11 +28,17 @@
 			<key>defaults</key>
 			<string>de.marank.icontrolclientprefs</string>
 			<key>key</key>
-			<string>hostaddress</string>
+			<string>HostAddress</string>
 			<key>placeholder</key>
 			<string>IP address</string>
             <key>isIP</key>
             <true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>WARNING: If you enable/disable the Fixed Host switch, the usage of icontrol cli tool changes. If the switch is off, you need to provide a IP address as the first parameter. If the switch is enabled, you have to enter the IP address in the textfield below. Now you don't have to supply the IP address every time you call icontrol.</string>
 		</dict>
 	</array>
 	<key>title</key>

@@ -11,6 +11,7 @@ icontrol_FILES = main.mm FastSocket.m
 include $(THEOS_MAKE_PATH)/tool.mk
 
 SUBPROJECTS += icontrolprefs
+SUBPROJECTS += icontrolflipswitch
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 internal-after-install::
